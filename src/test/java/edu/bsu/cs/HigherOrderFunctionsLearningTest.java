@@ -14,6 +14,7 @@ import java.time.Instant;
 import java.time.Month;
 import java.util.Arrays;
 import java.util.List;
+import java.util.Locale;
 import java.util.Map;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
@@ -138,7 +139,7 @@ public class HigherOrderFunctionsLearningTest {
     @Test
     public void testCountNonBots() {
         Stream<Revision> input = getRevisions("soup30.json");
-        long actual = 0;
+        long actual = input.map(r -> r.user.toLowerCase()).filter(u -> !u.contains("bot")).count();
         int expected = 26;
         Assertions.assertEquals(expected, actual);
     }
