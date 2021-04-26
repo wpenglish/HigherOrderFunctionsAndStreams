@@ -139,7 +139,7 @@ public class HigherOrderFunctionsLearningTest {
     @Test
     public void testCountNonBots() {
         Stream<Revision> input = getRevisions("soup30.json");
-        long actual = input.map(r -> r.user.toLowerCase()).filter(u -> !u.contains("bot")).count();
+        long actual = input.filter(r -> !r.user.toLowerCase().contains("bot")).count();
         int expected = 26;
         Assertions.assertEquals(expected, actual);
     }
